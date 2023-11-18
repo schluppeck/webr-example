@@ -1,0 +1,38 @@
+---
+title: "web"
+---
+
+This is a Quarto website that makes use of 
+
+The following is vanilla `r`
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+library(tidyverse)
+url <- "https://storage.googleapis.com/dft-statistics/road-traffic/downloads/traffic/vehicle-type/region_id/dft_traffic_vehicle_type_region_id_7.csv"
+t <- read_csv(url)
+
+t %>% 
+  mutate(pedal_cycles_k = pedal_cycles/1000) %>% 
+  ggplot(aes(x = year, y = pedal_cycles_k )) + 
+  geom_line() +
+  theme_minimal()
+```
+
+... and this is `webr`
+
+```{webr-r}
+url <- "https://storage.googleapis.com/dft-statistics/road-traffic/downloads/traffic/vehicle-type/region_id/dft_traffic_vehicle_type_region_id_7.csv"
+download.file(url, "dft_traffic_vehicle_type_region_id_7.csv")
+t <- read_csv("dft_traffic_vehicle_type_region_id_7.csv")
+
+t %>% 
+  mutate(pedal_cycles_k = pedal_cycles/1000) %>% 
+  ggplot(aes(x = year, y = pedal_cycles_k )) + 
+  geom_line() +
+  theme_minimal()
+```
+
+

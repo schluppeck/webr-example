@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "web",
+    "section": "",
+    "text": "This is a Quarto website that makes use of\nThe following is vanilla r\n\n\nCode\nlibrary(tidyverse)\nurl &lt;- \"https://storage.googleapis.com/dft-statistics/road-traffic/downloads/traffic/vehicle-type/region_id/dft_traffic_vehicle_type_region_id_7.csv\"\nt &lt;- read_csv(url)\n\nt %&gt;% \n  mutate(pedal_cycles_k = pedal_cycles/1000) %&gt;% \n  ggplot(aes(x = year, y = pedal_cycles_k )) + \n  geom_line() +\n  theme_minimal()\n\n\n\n\n\n… and this is webr\n\n  🟡 Loading\n    webR..."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]
