@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   const initializeWebRTimerStart = performance.now();
 
   // Determine if we need to install R packages
-  var installRPackagesList = ['tidyverse'];
+  var installRPackagesList = ['tidyverse', 'httpuv'];
   // Check to see if we have an empty array, if we do set to skip the installation.
   var setupRPackages = !(installRPackagesList.indexOf("") !== -1);
   var autoloadRPackages = true;
@@ -427,7 +427,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#quarto-webpage-with-r-snippet" id="toc-quarto-webpage-with-r-snippet" class="nav-link active" data-scroll-target="#quarto-webpage-with-r-snippet"><code>quarto</code> webpage with <code>r</code> snippet</a></li>
+  <li><a href="#and-this-with-a-webr-snippet." id="toc-and-this-with-a-webr-snippet." class="nav-link" data-scroll-target="#and-this-with-a-webr-snippet.">… and this with a <code>webr</code> snippet.</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -459,8 +466,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>This is a Quarto website that makes use of</p>
-<p>The following is vanilla <code>r</code></p>
+<section id="quarto-webpage-with-r-snippet" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-webpage-with-r-snippet"><code>quarto</code> webpage with <code>r</code> snippet</h2>
+<p>The following is a vanilla <code>r</code> piece of code, in which we download a <code>csv</code> file to local directory, then process, produce a ggplot image which when gets include</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -478,7 +486,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>… and this is <code>webr</code></p>
+</section>
+<section id="and-this-with-a-webr-snippet." class="level2">
+<h2 class="anchored" data-anchor-id="and-this-with-a-webr-snippet.">… and this with a <code>webr</code> snippet.</h2>
+<p>I used the <code>webr</code> filter for quarto from James Balamuto <span class="citation" data-cites="coatless">@coatless</span> <a href="https://github.com/coatless/quarto-webr">see github repo here</a></p>
 <div id="qwebr-interactive-area-1" class="qwebr-interactive-area">
   <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-1">🟡 Loading
     webR...</button>
@@ -502,15 +513,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `url <- "https://storage.googleapis.com/dft-statistics/road-traffic/downloads/traffic/vehicle-type/region_id/dft_traffic_vehicle_type_region_id_7.csv"
-download.file(url, "dft_traffic_vehicle_type_region_id_7.csv")
-t <- read_csv("dft_traffic_vehicle_type_region_id_7.csv")
+      value: `
+# local FS user space
+setwd("/home/web_user/")
 
+# download a webbased file to (browser local FS)
+url <- "https://raw.githubusercontent.com/schluppeck/webr-example/main/dft_traffic_vehicle_type_region_id_7.csv"
+local_file <- "dftdata.csv"
+
+# download, check, read csv
+download.file(url, local_file )
+list.files("/home/web_user/",full=TRUE)
+t <- read_csv("dftdata.csv", show_col_types = FALSE)
+
+# now plot
 t %>% 
   mutate(pedal_cycles_k = pedal_cycles/1000) %>% 
   ggplot(aes(x = year, y = pedal_cycles_k )) + 
   geom_line() +
-  theme_minimal()`,
+  geom_point() +
+  theme_minimal() + 
+  geom_smooth(method="loess") +
+  labs(title = "Cycles on the road / year (1000's)")`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -767,6 +791,7 @@ t %>%
 </script>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

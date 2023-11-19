@@ -4,13 +4,34 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "This is a simple test site to play around with webr 0.2.0, the r version that runs with web assembly inside the browser.\nI wanted to check how difficult it would be to load a csv file from a remote location (github didn’t cause CORS errorsa) to the local, virtual file system, the plot with `ggplot."
+  },
+  {
+    "objectID": "about.html#references",
+    "href": "about.html#references",
+    "title": "About",
+    "section": "References",
+    "text": "References\n\nwebr 0.2.0 blog post\nwebr website\nwebr extension for quarto"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "web",
     "section": "",
-    "text": "This is a Quarto website that makes use of\nThe following is vanilla r\n\n\nCode\nlibrary(tidyverse)\nurl &lt;- \"https://storage.googleapis.com/dft-statistics/road-traffic/downloads/traffic/vehicle-type/region_id/dft_traffic_vehicle_type_region_id_7.csv\"\nt &lt;- read_csv(url)\n\nt %&gt;% \n  mutate(pedal_cycles_k = pedal_cycles/1000) %&gt;% \n  ggplot(aes(x = year, y = pedal_cycles_k )) + \n  geom_line() +\n  theme_minimal()\n\n\n\n\n\n… and this is webr\n\n  🟡 Loading\n    webR..."
+    "text": "The following is a vanilla r piece of code, in which we download a csv file to local directory, then process, produce a ggplot image which when gets include\n\n\nCode\nlibrary(tidyverse)\nurl &lt;- \"https://storage.googleapis.com/dft-statistics/road-traffic/downloads/traffic/vehicle-type/region_id/dft_traffic_vehicle_type_region_id_7.csv\"\nt &lt;- read_csv(url)\n\nt %&gt;% \n  mutate(pedal_cycles_k = pedal_cycles/1000) %&gt;% \n  ggplot(aes(x = year, y = pedal_cycles_k )) + \n  geom_line() +\n  theme_minimal()"
+  },
+  {
+    "objectID": "index.html#quarto-webpage-with-r-snippet",
+    "href": "index.html#quarto-webpage-with-r-snippet",
+    "title": "web",
+    "section": "",
+    "text": "The following is a vanilla r piece of code, in which we download a csv file to local directory, then process, produce a ggplot image which when gets include\n\n\nCode\nlibrary(tidyverse)\nurl &lt;- \"https://storage.googleapis.com/dft-statistics/road-traffic/downloads/traffic/vehicle-type/region_id/dft_traffic_vehicle_type_region_id_7.csv\"\nt &lt;- read_csv(url)\n\nt %&gt;% \n  mutate(pedal_cycles_k = pedal_cycles/1000) %&gt;% \n  ggplot(aes(x = year, y = pedal_cycles_k )) + \n  geom_line() +\n  theme_minimal()"
+  },
+  {
+    "objectID": "index.html#and-this-with-a-webr-snippet.",
+    "href": "index.html#and-this-with-a-webr-snippet.",
+    "title": "web",
+    "section": "… and this with a webr snippet.",
+    "text": "… and this with a webr snippet.\nI used the webr filter for quarto from James Balamuto @coatless see github repo here\n\n  🟡 Loading\n    webR..."
   }
 ]
